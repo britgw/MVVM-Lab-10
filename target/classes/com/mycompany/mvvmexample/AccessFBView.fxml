@@ -26,9 +26,9 @@
       <TextArea fx:id="outputField" layoutX="6.0" layoutY="196.0" prefHeight="42.0" prefWidth="486.0" />
       <TableView fx:id="outputTable" layoutX="14.0" layoutY="238.0" prefHeight="220.0" prefWidth="466.0">
          <columns>
-            <TableColumn fx:id="column_name" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="column_major" prefWidth="75.0" text="Major" />
-            <TableColumn fx:id="column_age" prefWidth="75.0" text="Age" />
+            <TableColumn fx:id="c_name" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="c_major" prefWidth="75.0" text="Major" />
+            <TableColumn fx:id="c_age" prefWidth="75.0" text="Age" />
          </columns></TableView>
    </children>
    <opaqueInsets>

@@ -53,13 +53,13 @@ public class AccessFBView implements Initializable{
     @FXML
     private ListView outputList;
     @FXML
-    private TableColumn<Person, Integer> column_age;
+    private TableColumn<Person, Integer> c_age;
 
     @FXML
-    private TableColumn<Person, String> column_major;
+    private TableColumn<Person, String> c_major;
 
     @FXML
-    private TableColumn<Person, String> column_name;
+    private TableColumn<Person, String> c_name;
      private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
@@ -74,9 +74,9 @@ public class AccessFBView implements Initializable{
         majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
         
-        column_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        column_age.setCellValueFactory(new PropertyValueFactory<>("Major"));
-        column_major.setCellValueFactory(new PropertyValueFactory<>("Age"));
+        c_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        c_age.setCellValueFactory(new PropertyValueFactory<>("Major"));
+        c_major.setCellValueFactory(new PropertyValueFactory<>("Age"));
     }
 
     @FXML

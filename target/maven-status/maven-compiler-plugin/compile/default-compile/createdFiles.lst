@@ -3,3 +3,4 @@ viewmodel\AccessDataViewModel.class
 com\mycompany\mvvmexample\App.class
 com\mycompany\mvvmexample\FirestoreContext.class
 modelview\AccessFBView.class
+.netbeans_automatic_build
