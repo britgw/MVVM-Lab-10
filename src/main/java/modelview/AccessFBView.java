@@ -23,15 +23,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import models.Person;
 
-public class AccessFBView {
+public class AccessFBView implements Initializable{
 
  
      @FXML
@@ -47,30 +49,34 @@ public class AccessFBView {
     @FXML
     private TextArea outputField;
     @FXML
-    private TableView outputTable;
+    private TableView outputTable = new TableView();
     @FXML
     private ListView outputList;
     @FXML
-    private TableColumn<?, ?> column_age;
+    private TableColumn<Person, Integer> column_age;
 
     @FXML
-    private TableColumn<?, ?> column_major;
+    private TableColumn<Person, String> column_major;
 
     @FXML
-    private TableColumn<?, ?> column_name;
+    private TableColumn<Person, String> column_name;
      private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
     public ObservableList<Person> getListOfUsers() {
         return listOfUsers;
     }
-
-    void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
         AccessDataViewModel accessDataViewModel = new AccessDataViewModel();
         nameField.textProperty().bindBidirectional(accessDataViewModel.userNameProperty());
         majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
+        
+        column_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        column_age.setCellValueFactory(new PropertyValueFactory<>("Major"));
+        column_major.setCellValueFactory(new PropertyValueFactory<>("Age"));
     }
 
     @FXML
@@ -115,14 +121,20 @@ public class AccessFBView {
                 System.out.println("Outing....");
                 for (QueryDocumentSnapshot document : documents) 
                 {
-                    outputField.setText(outputField.getText()+ document.getData().get("Name")+ " , Major: "+
-                            document.getData().get("Major")+ " , Age: "+
-                            document.getData().get("Age")+ " \n ");
-                    System.out.println(document.getId() + " => " + document.getData().get("Name"));
                     person  = new Person(String.valueOf(document.getData().get("Name")), 
                             document.getData().get("Major").toString(),
                             Integer.parseInt(document.getData().get("Age").toString()));
                     listOfUsers.add(person);
+                    
+                    
+                    outputField.setText(outputField.getText()+ document.getData().get("Name")+ " , Major: "+
+                            document.getData().get("Major")+ " , Age: "+
+                            document.getData().get("Age")+ " \n ");
+                    System.out.println(document.getId() + " => " + document.getData().get("Name"));
+                    
+                    
+                    
+                    outputTable.setItems(listOfUsers);
                 }
             }
             else
