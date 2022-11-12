@@ -26,6 +26,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 import models.Person;
 
 public class AccessFBView {
@@ -43,6 +46,18 @@ public class AccessFBView {
     private Button readButton;
     @FXML
     private TextArea outputField;
+    @FXML
+    private TableView outputTable;
+    @FXML
+    private ListView outputList;
+    @FXML
+    private TableColumn<?, ?> column_age;
+
+    @FXML
+    private TableColumn<?, ?> column_major;
+
+    @FXML
+    private TableColumn<?, ?> column_name;
      private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
